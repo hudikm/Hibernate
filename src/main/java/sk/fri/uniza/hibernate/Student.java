@@ -5,65 +5,41 @@
  */
 package sk.fri.uniza.hibernate;
 
+import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.Inheritance;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author hudik1
  */
 @Entity
-@Table(name = "Students")
-public class Student {
-    
-    @Id
-    @GeneratedValue
-    private Integer id;
-    
-    private String firstName;
-    private Integer age;
+public class Student extends Person {
 
     public Student() {
+        super();
     }
 
+    @ManyToOne
+    private StudentClass studentClass;
+    
     public Student(Integer id, String firstName, Integer age) {
-        this.id = id;
-        this.firstName = firstName;
-        this.age = age;
+        super(id, firstName, age);
+    }
+
+    public Student(Date dateOfStart, String firstName, Integer age) {
+        super(firstName, age);
+        this.dateOfStart = dateOfStart;
     }
 
     public Student(String firstName, Integer age) {
-        this.firstName = firstName;
-        this.age = age;
-    }
-    
-    
-    public Integer getId() {
-        return id;
+        super(firstName, age);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @Temporal(TemporalType.DATE)
+    Date dateOfStart;
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-    
-    
-    
 }

@@ -5,6 +5,7 @@
  */
 package sk.fri.uniza.hibernate;
 
+import java.util.Date;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -22,28 +23,24 @@ public class Main {
     public static void main(String[] args) {
         Configuration conf = new Configuration();
         conf.configure();
-        
+
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
         SessionFactory buildSessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-        
-        
+
         Session session = buildSessionFactory.openSession();
         session.beginTransaction();
 
-        Student student = new Student();
-        student.setFirstName("Bob");
-        student.setAge(26);
+        Student student = new Student(new Date(), "Bod", 26);
+        Lecturer lecturer = new Lecturer("KTK", "Martin", 27);
+        Person person = new Person("Jozef",35);
 
+        session.save(person);
         session.save(student);
+        session.save(lecturer);
         session.getTransaction().commit();
         session.close();
-        
+
         StandardServiceRegistryBuilder.destroy(registry);
-        
-        
-        
-                
-        
 
     }
 
