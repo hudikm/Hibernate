@@ -19,6 +19,6 @@
     <mapping class="sk.fri.uniza.hibernate.Person"/>
     <mapping class="sk.fri.uniza.hibernate.Lecturer"/>
     <mapping class="sk.fri.uniza.hibernate.Student"/>
-    <mapping class="sk.fri.uniza.hibernate.StudentClass"/>
+    
   </session-factory>
 </hibernate-configuration>

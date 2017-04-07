@@ -23,8 +23,6 @@ public class Student extends Person {
         super();
     }
 
-    @ManyToOne
-    private StudentClass studentClass;
     
     public Student(Integer id, String firstName, Integer age) {
         super(id, firstName, age);
