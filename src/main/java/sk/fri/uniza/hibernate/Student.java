@@ -23,20 +23,29 @@ public class Student extends Person {
         super();
     }
 
-    @ManyToOne
-    private StudentClass studentClass;
-    
-    public Student(Integer id, String firstName, Integer age) {
-        super(id, firstName, age);
-    }
-
-    public Student(Date dateOfStart, String firstName, Integer age) {
+    public Student(Date dateOfStart,String firstName, Integer age) {
         super(firstName, age);
         this.dateOfStart = dateOfStart;
     }
 
-    public Student(String firstName, Integer age) {
-        super(firstName, age);
+
+    @ManyToOne
+    private StudentClass studentClass;
+
+    public StudentClass getStudentClass() {
+        return studentClass;
+    }
+
+    public void setStudentClass(StudentClass studentClass) {
+        this.studentClass = studentClass;
+    }
+
+    public Date getDateOfStart() {
+        return dateOfStart;
+    }
+
+    public void setDateOfStart(Date dateOfStart) {
+        this.dateOfStart = dateOfStart;
     }
 
     @Temporal(TemporalType.DATE)

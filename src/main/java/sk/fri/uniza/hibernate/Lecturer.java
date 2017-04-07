@@ -5,7 +5,11 @@
  */
 package sk.fri.uniza.hibernate;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -27,7 +31,11 @@ public class Lecturer extends Person {
     public Lecturer(String firstName, Integer age) {
         super(firstName, age);
     }
+    
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<StudentClass> studentClassesLecturer = new ArrayList<>();
 
     String Department;
+    
 
 }

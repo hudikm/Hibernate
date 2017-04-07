@@ -31,17 +31,28 @@ public class Main {
         session.beginTransaction();
 
         Student student = new Student(new Date(), "Bod", 26);
+        Student student2 = new Student(new Date(), "Joe", 24);
         Lecturer lecturer = new Lecturer("KTK", "Martin", 27);
         Person person = new Person("Jozef",35);
-
+        StudentClass studentClass = new StudentClass("Trieda 1");
+        
+        studentClass.addStudent(student);
+        studentClass.addStudent(student2);
+        
         session.save(person);
-        session.save(student);
+//        session.save(student);
+//        session.save(student2);
         session.save(lecturer);
+        //session.flush();
+        session.save(studentClass);
         session.getTransaction().commit();
         session.close();
 
         StandardServiceRegistryBuilder.destroy(registry);
 
+    }
+
+    public Main() {
     }
 
 }
