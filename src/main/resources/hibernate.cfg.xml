@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
     <!-- Database connection settings -->
-    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="connection.url">jdbc:mysql://sql11.freemysqlhosting.net:3306/sql11167744</property>
-    <property name="connection.username">sql11167744</property>
-    <property name="connection.password">eytYZrlKCz</property>
+    <!--<property name="connection.driver_class">com.mysql.jdbc.Driver</property>-->
+    <property name="connection.url">jdbc:mysql://127.0.0.1:3306/hibernate?useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
+    <property name="connection.username">userHibernate</property>
+    <property name="connection.password">userHibernate</property>
     <!-- JDBC connection pool (use the built-in) -->
     <property name="connection.pool_size">2</property>
     <!-- SQL dialect -->
-    <property name="dialect">org.hibernate.dialect.MySQL57Dialect</property>
+    <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+    
+    <property name="hibernate.connection.CharSet">utf8</property>
+    <property name="hibernate.connection.characterEncoding">utf8</property>
+    <property name="hibernate.connection.useUnicode">true</property>
+    
     <!-- Echo all executed SQL to stdout -->
     <property name="show_sql">true</property>
     <!-- Drop and re-create the database schema on startup -->
@@ -20,5 +25,6 @@
     <mapping class="sk.fri.uniza.hibernate.Lecturer"/>
     <mapping class="sk.fri.uniza.hibernate.Student"/>
     <mapping class="sk.fri.uniza.hibernate.StudentClass"/>
+    <mapping class="sk.fri.uniza.hibernate.Phone"/>
   </session-factory>
 </hibernate-configuration>

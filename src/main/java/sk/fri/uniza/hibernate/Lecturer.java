@@ -15,7 +15,6 @@ import javax.persistence.ManyToMany;
  *
  * @author hudik1
  */
-
 @Entity
 public class Lecturer extends Person {
 
@@ -31,11 +30,14 @@ public class Lecturer extends Person {
     public Lecturer(String firstName, Integer age) {
         super(firstName, age);
     }
-    
+
+    public void addClass(StudentClass stClass) {
+        studentClassesLecturer.add(stClass);
+    }
+
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<StudentClass> studentClassesLecturer = new ArrayList<>();
 
     String Department;
-    
 
 }

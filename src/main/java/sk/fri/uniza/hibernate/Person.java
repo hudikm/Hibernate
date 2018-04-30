@@ -5,10 +5,15 @@
  */
 package sk.fri.uniza.hibernate;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
+import static javax.persistence.InheritanceType.SINGLE_TABLE;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -17,7 +22,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Persons")
-@Inheritance
+@Inheritance(strategy = SINGLE_TABLE) //Urcuje strategiu mapovania struktury objektov do databazy
 public class Person {
 
     @Id
@@ -26,6 +31,9 @@ public class Person {
 
     private String firstName;
     private Integer age;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    private List<Phone> phones = new ArrayList<>();
 
     public Person(Integer id, String firstName, Integer age) {
         this.id = id;
@@ -40,7 +48,6 @@ public class Person {
 
     public Person() {
     }
-    
 
     public Integer getId() {
         return id;
@@ -64,5 +71,10 @@ public class Person {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+    
+    public void addPhone(Phone phone) {
+        this.phones.add( phone );
+        phone.setOwner( this );
     }
 }

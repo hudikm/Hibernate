@@ -37,7 +37,7 @@ public class StudentClass {
     String nameOfClass;
 
     StudentClass() {
-       
+
     }
 
     public String getNameOfClass() {
@@ -61,8 +61,8 @@ public class StudentClass {
     public List<Student> getStudents() {
         return students;
     }
-    
-    public void addStudent(Student student){
+
+    public void addStudent(Student student) {
         students.add(student);
         student.setStudentClass(this);
     }
@@ -91,7 +91,5 @@ public class StudentClass {
         }
         return true;
     }
-    
-    
 
 }
